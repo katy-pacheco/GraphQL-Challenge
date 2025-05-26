@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.nav {
+    height: 52PX;
+    text-align: left;
+    padding: 16px;
+    color: var(--white-color);
+    background-color: var(--black-color);
+
+}
+
+.sidebar {
+    width: 300px;
+    border-right: 1px solid #eee;
+}
+
+.detailPanel {
+    flex: 1;
+    padding: 24px;
+    overflow: visible;
+}
