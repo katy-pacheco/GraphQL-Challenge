@@ -6,7 +6,11 @@ import styles from '../CharacterList/character.module.css';
 import { ChevronRightIcon } from '@radix-ui/react-icons';
 import Loading from '../../assets/loading.svg';
 
-export default function CharacterList() {
+interface Props {
+    onSelectCharacter: (id: string) => void;
+}
+
+export default function CharacterList({ onSelectCharacter }: Props) {
     const { data, loading, error, fetchMore } = useQuery(GET_CHARACTER_LIST, {
         variables: { page: 1 },
         notifyOnNetworkStatusChange: true,
@@ -40,7 +44,12 @@ export default function CharacterList() {
     return (
         <div className={styles.sidebar}>
             {data?.characters?.results.map((character: Character) => (
-                <div key={character.id} className={styles.sidebarContent}>
+                <div
+                    key={character.id}
+                    className={styles.sidebarContent}
+                    onClick={() => onSelectCharacter(character.id)}
+                    style={{ cursor: 'pointer' }}
+                >
                     <div className={styles.textGroup}>
                         <h2 className={styles.title}>{character.name}</h2>
                         <p className={styles.subtitle}>{character.species}</p>
@@ -48,11 +57,9 @@ export default function CharacterList() {
                     <ChevronRightIcon className={styles.ChevronRightIcon} />
                 </div>
             ))}
-
             {error &&
                 <h2 className={styles.errorMessage}>Failed to Load Data</h2>
             }
-
             {loading &&
                 <div className={styles.loadingIcon}> <img src={Loading} alt="loading characters" /><p>Loading</p></div>
             }

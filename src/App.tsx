@@ -1,10 +1,10 @@
 import './App.css';
-import CharacterList from './components/CharacterList/character-list';
+import CharacterPage from './components/CharacterPage/character-page';
 
 function App() {
   return (
     <>
-      <CharacterList />
+      <CharacterPage />
     </>
   );
 }
